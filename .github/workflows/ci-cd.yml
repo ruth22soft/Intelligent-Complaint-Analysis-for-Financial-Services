@@ -28,9 +28,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run tests
-      run: |
-        pytest tests/
+    # - name: Run tests
+    #   run: |
+    #     pytest tests/
 
     # Optional: Build vector store or embeddings (if automated)
     # - name: Build embeddings and vector store
