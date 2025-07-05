@@ -4,7 +4,6 @@
 - `src/` - Source code package
 - `scripts/` - Standalone scripts for data processing
 - `notebooks/` - Jupyter notebooks for analysis
-- `app/` - Main application package
 - `tests/` - Test cases
 - `data/` - Raw and processed data
 - `models/` - Trained models
