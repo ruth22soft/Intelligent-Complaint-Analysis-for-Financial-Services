@@ -16,6 +16,7 @@ venv/
 *.db
 *.xlsx
 data/
+!data/**/*.dvc
 
 # Notebooks
 *.ipynb_checkpoints/
