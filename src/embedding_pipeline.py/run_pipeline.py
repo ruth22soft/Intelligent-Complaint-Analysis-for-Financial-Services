@@ -14,14 +14,21 @@ def run_pipeline():
     print(f"Created {len(chunks)} chunks from {len(df)} complaints")
     
     # Batch processing for memory efficiency
+    import gc
+    import psutil
     builder = VectorStoreBuilder()
-    batch_size = 100
-    
+    batch_size = 50  # Reduce batch size to lower memory usage
+
+    process = psutil.Process()
     for i in range(0, len(chunks), batch_size):
         batch = chunks[i:i+batch_size]
+        print(f"Batch {i//batch_size+1}: Processing {len(batch)} chunks...")
         builder.add_documents(batch)
-        print(f"Processed {min(i+batch_size, len(chunks))}/{len(chunks)} chunks")
-    
+        mem = process.memory_info().rss / (1024 * 1024)
+        print(f"Processed {min(i+batch_size, len(chunks))}/{len(chunks)} chunks | Memory usage: {mem:.2f} MB")
+        del batch
+        gc.collect()
+
     # Save vector store
     builder.save("vector_store")
     print("Vector store saved to vector_store/")
